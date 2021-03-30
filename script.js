@@ -52,14 +52,19 @@ myImage.addEventListener('load', function(){
             this.size = Math.random() * 1.5 + 1;
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
+            this.angle = 0;
         }
         update(){
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
-            this.speed = mappedImage[this.position1][this.position2][0];
-            let movement = (2.5 - this.speed) + this.velocity;
+            if ((mappedImage[this.position1])&&(mappedImage[this.position1][this.position2])){
+                this.speed = mappedImage[this.position1][this.position2][0];
 
-            this.y += movement;
+            }
+            let movement = (2.5 - this.speed) + this.velocity;
+            this.angle++;
+
+            this.y += movement + Math.sin(this.angle) * 3;
             this.x += movement;
             if (this.y >= canvas.height){
                 this.y = 0;
@@ -72,7 +77,9 @@ myImage.addEventListener('load', function(){
         }
         draw(){
             ctx.beginPath();
-            ctx.fillStyle = mappedImage[this.position1][this.position2][1];
+            if ((mappedImage[this.position1])&&(mappedImage[this.position1][this.position2])){
+                ctx.fillStyle = mappedImage[this.position1][this.position2][1];
+            }
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
