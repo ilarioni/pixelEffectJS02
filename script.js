@@ -84,7 +84,7 @@ myImage.addEventListener('load', function(){
         ctx.globalAlpha = 0.2;
         for (let i = 0; i < particlesArray.length; i++){
             particlesArray[i].update();
-            ctx.globalAlpha = particlesArray[i].speed;
+            ctx.globalAlpha = particlesArray[i].speed * 0.5;
             particlesArray[i].draw();
         }
         requestAnimationFrame(animate);
