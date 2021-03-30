@@ -30,7 +30,7 @@ myImage.addEventListener('load', function(){
             }
         }
         draw(){
-            ctx.beginnPath();
+            ctx.beginPath();
             ctx.fillStyle = 'white';
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -44,7 +44,7 @@ myImage.addEventListener('load', function(){
     init();
     function animate(){
         ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
-        ctx.globalAlpha = 0,05;
+        ctx.globalAlpha = 0.05;
         ctx.fillStyle = 'rgb(0, 0, 0)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < particlesArray.length; i++){
