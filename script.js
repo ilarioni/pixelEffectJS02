@@ -11,6 +11,7 @@ myImage.addEventListener('load', function(){
 
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
    
 
     let particlesArray = [];
