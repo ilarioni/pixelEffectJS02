@@ -10,9 +10,35 @@ myImage.addEventListener('load', function(){
     canvas.height = 591;
 
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+   
 
     let particlesArray = [];
     const numberOfParticles = 5000;
+
+    let mappedImage = [];
+    for (let y = 0; y < canvas.height; y++){
+        let row = [];
+        for (let x = 0; x < canvas.width; x++){
+            const red = pixels.data[(y * 4 * pixels.width) + (x * 4)];
+            const green = pixels.data[(y * 4 * pixels.width) + (x * 4 + 1)];
+            const blue = pixels.data[(y * 4 * pixels.width) + (x * 4 + 2)];
+            const brightness = calculateRelativeBrightness(red, green, blue);
+            const cell = [
+                cellBrightness = brightness, 
+            ];
+            row.push(cell);
+        }
+        mappedImage.push(row);
+    }
+
+    function calculateRelativeBrightness(red, green, blue){
+        return Math.sqrt(
+            (red * red) * 0.299 +
+            (green * green) * 0.587 +
+            (blue * blue) * 0.114 
+        )/100;
+    }
 
     class Particle {
         constructor(){
